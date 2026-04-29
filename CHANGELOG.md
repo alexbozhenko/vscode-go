@@ -5,7 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
-Added menu in a debugger that will show variable in a new document with respect to special chars like `\r\n\t`
+### Changes
+
+* Interactive code actions: Support has been added for interactive refactorings that prompt the user for input before proceeding. This enables more sophisticated code actions that require user choices like "add/remove tags to struct fields", "implement interface".
+
+  This integration follows the language client implementation [guidelines](https://github.com/golang/tools/blob/gopls/v0.22.0/gopls/doc/design/integrating-interactive-refactoring.md). See supported interactive refactoring from gopls [feature doc](https://github.com/golang/tools/blob/gopls/v0.22.0/gopls/doc/features/transformation.md#interactive-code-actions).
+
+  Dialog support is a non-standard feature of LSP. It is currently supported only by `gopls` and `vscode-go`. We plan to work with the broader LSP community toward a standard specification.
+
+* Added menu in a debugger that will show variable in a new document with respect to special chars like `\r\n\t`
 
 ## v0.53.1 (prerelease)
 
@@ -48,10 +56,6 @@ To prevent accidental untrusted code execution, vscode-go no longer allows invoc
 
 This is CVE-2025-68120.
 
-### Changes
-
-* Added a new field, 'compilerDetails', on the 'go.editorContextMenuCommands' setting that when set to true will show the "Go: Toggle compiler optimization details" command in the context menu.
-
 ### Important
 
 * To ensure the extension remains fully compatible and stable, the required
@@ -59,6 +63,8 @@ minimum Go version remains Go 1.23. A new notification will now be sent to help
 users running older versions upgrade to Go 1.23+.
 
 ### Changes
+
+* Added a new field, 'compilerDetails', on the 'go.editorContextMenuCommands' setting that when set to true will show the "Go: Toggle compiler optimization details" command in the context menu.
 
 * **Tool Management Refactoring**: The extension now correctly uses the tools
 specified in the `"go.lintTool"` and `"go.formatTool"` settings.
