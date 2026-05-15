@@ -661,6 +661,21 @@ matching a glob specified here will trigger a reload of the workspace.
 This setting need only be customized in environments with a custom
 GOPACKAGESDRIVER.
 
+### `fileWatcher`
+
+(Experimental) fileWatcher specifies the server-side file watching strategy used by gopls.
+
+By default, this is set to "off", meaning gopls relies exclusively on the
+language client (e.g., the editor) to send file change notifications.
+
+Available options:
+  - "off"      : Client-driven watching (default)
+  - "fsnotify" : OS-level event notifications
+  - "poll"     : Periodic directory scanning
+<br/>
+Allowed Options: `fsnotify`, `off`, `poll`
+
+Default: `"off"`
 ### `formatting.gofumpt`
 
 gofumpt indicates if we should run gofumpt formatting.
